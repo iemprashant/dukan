@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from './components/Layout/layout';
-import Routes from './components/UI/Routes/Routes';
+import Routes from './components/Routes/Routes';
+import { withRouter } from 'react-router-dom';
 
 const App=() =>{
   return (
@@ -9,4 +10,4 @@ const App=() =>{
     </Layout>
   );
 }
-export default App
+export default withRouter (App);

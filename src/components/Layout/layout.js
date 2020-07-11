@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react'
-import Footer from '../UI/Footer/footer'
-import NavbarComp from '../UI/Navbar/navbar'
+import Footer from '../UI/footer'
+import NavbarComp from '../UI/navbar';
 const Layout = (props) => {
   return (
     <Fragment>
+      <NavbarComp/>
         {props.children}
         <Footer/>
     </Fragment>
