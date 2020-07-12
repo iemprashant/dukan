@@ -18,7 +18,7 @@ const NavbarComp = (props) => {
   return (
     <div>
       <Navbar color="white" light expand="md" className="  border border-secondary "  >
-        <NavbarBrand link="/" style={{ color: "#333",fontFamily: 'Modak'}}>KabaadDukaan</NavbarBrand>
+        <NavbarBrand href="/" style={navItemStyle}>KabaadDukaan</NavbarBrand>
         <NavbarToggler className="border-0 btn-warning btn-lg" onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto " navbar>

@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Container, Row, Col } from 'reactstrap';
+import Footer2 from '../../footer2';
 
 const Signin = () => {
   return (
+    <Fragment>
     <Container className="themed-container my-3 px-0 " fluid="sm" >
         <Col sm="12" md={{ size: 6, offset: 3 }} className="border border-secondary py-5 px-3 d-flex bg-white flex-column justify-content-center">
             <h4 className="text-secondary text-center font-weight-bold">Sell or Donate your scrap</h4>
@@ -18,6 +20,8 @@ const Signin = () => {
 
         </Col>
     </Container>
+    <Footer2/>
+    </Fragment>
   )
 }
 

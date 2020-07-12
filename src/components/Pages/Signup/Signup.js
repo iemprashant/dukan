@@ -1,8 +1,12 @@
-import React from 'react'
 
+import React, { Fragment } from 'react'
+import Footer2 from '../../footer2'
 const Signup = () => {
   return (
-      <h1>this is a Signup</h1>
+      <Fragment>
+        <h1>this is a Signup</h1>
+      <Footer2/>
+    </Fragment>
   )
 }
 

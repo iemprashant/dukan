@@ -1,11 +1,16 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,Fragment} from 'react'
+
+import Footer2 from '../../footer2' 
 import * as actions from '../../../store/actions/index'
 import { connect } from 'react-redux'
 import axios from 'axios'
 
 const RequestPickup = () => {
   return (
-    <h1>this is a pickupp</h1>
+    <Fragment>  
+      <h1>this is a pickupp</h1>
+      <Footer2/>
+    </Fragment>
   )
 }
 const mapStateToProps = state =>{
