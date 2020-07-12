@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
-import Footer from '../UI/footer'
-import NavbarComp from '../UI/navbar';
+import Footer from '../footer'
+import NavbarComp from '../navbar';
 const Layout = (props) => {
   return (
     <Fragment>
