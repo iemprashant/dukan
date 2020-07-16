@@ -18,12 +18,14 @@ const NavbarComp = (props) => {
   return (
     <div>
       <Navbar color="white" light expand="md" className="  border border-secondary "  >
-        <NavbarBrand href="/" style={navItemStyle}>KabaadDukaan</NavbarBrand>
+        <NavbarBrand>
+          <NavLink to="/" className="text-dark text-decoration-none" exact={props.exact} style={navItemStyle}>KabaadDukaan</NavLink>
+        </NavbarBrand>
         <NavbarToggler className="border-0 btn-warning btn-lg" onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto " navbar>
             <NavItem className="mx-4 my-2 ">
-              <NavLink to="/pricelist" className="text-dark text-decoration-none" style={navItemStyle}>PriceList</NavLink>
+              <NavLink to="/pricelist" className="text-dark text-decoration-none" exact={props.exact} style={navItemStyle}>PriceList</NavLink>
             </NavItem>
             <NavItem className="mx-4 my-2 ">
               <NavLink to="/request" className="text-dark text-decoration-none" style={navItemStyle}>Request Pickup</NavLink>
