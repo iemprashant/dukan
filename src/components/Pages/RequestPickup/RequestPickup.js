@@ -1,5 +1,4 @@
-import React,{useEffect,Fragment} from 'react'
-
+import React,{Fragment} from 'react'
 import Footer2 from '../../footer2' 
 import * as actions from '../../../store/actions/index'
 import { connect } from 'react-redux'

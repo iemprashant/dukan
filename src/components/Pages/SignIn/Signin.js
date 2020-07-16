@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Col } from 'reactstrap';
 import Footer2 from '../../footer2';
 
 const Signin = () => {
