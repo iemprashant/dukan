@@ -7,14 +7,27 @@ export const fetchPricelistStart = ()=>{
     }
 }
 
-export const fetchPricelistSuccess=()=>{
+export const fetchPricelistSuccess=(pricelist)=>{
     return {
-        type:actionTypes.FETCH_PRICELIST_SUCCESS
+        type:actionTypes.FETCH_PRICELIST_SUCCESS,
+        pricelist:pricelist
     }
 }
-export const fetchPricelist=()=>{
+export const fetchPricelist=(city)=>{
     return dispatch=>{
         dispatch(fetchPricelistStart());
-        axios.get()
+        axios.get(`https://kabaddukaan.firebaseio.com/pricelist/Delhi.json`)
+        .then( 
+            response => {
+                const fetchedlist=[];
+                for (let key in response.data){
+                    fetchedlist.push({
+                        ...response.data[key]
+                        , id: key})
+                    }
+                dispatch(fetchPricelistSuccess(fetchedlist));
+            })
+        .catch( err=>
+            console.log(err));
     }
 }
