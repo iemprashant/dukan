@@ -12,7 +12,7 @@ const ModalComp = (props) => {
 
   return (
     <div>
-      <Modal isOpen={modal} toggle={toggle} backdrop='false' className=" modal-dialog modal-dialog-centered">
+      <Modal isOpen={modal} backdrop='false' centered='true'>
         <ModalHeader toggle={toggle} className="bg-light">Select City</ModalHeader>
         <ModalBody className="d-flex flex-column">
           <Button outline color="success" className="m-3 m-md-2" onClick={()=>toggle('Delhi')}>Delhi</Button>
