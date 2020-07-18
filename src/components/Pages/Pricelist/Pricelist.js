@@ -8,7 +8,7 @@ import ListComp from './listcomp/listcomp';
 import DropdownComp from './city-Dropdown/city-dropdown'
 
 const Pricelist = (props) => {
-  const {Onfetchpricelist,}=props;
+  const {Onfetchpricelist,loading}=props;
 
   const [city, setcity] = useState("Delhi");
 
@@ -16,6 +16,13 @@ const Pricelist = (props) => {
     Onfetchpricelist(city)
   }, [Onfetchpricelist,city])
 
+  let list=(
+    <div className="spinner-border text-success" style={{width:"3rem", height:"3rem"}} role="status">
+      <span class="sr-only">Loading...</span>
+    </div>)
+    if( !loading){
+    list=<ListComp/>
+    }
   return (
     <Fragment>
       <ModalComp setcity={setcity}/>
@@ -27,8 +34,8 @@ const Pricelist = (props) => {
           <div className="d-flex justify-content-end">
             <DropdownComp setcity={setcity} citystate={city}/>
           </div>
-        <div className="row p-2">
-          <ListComp/>
+        <div className="row p-2 d-flex justify-content-center">
+          {list}
         </div>
         </Col>
     </Container>
@@ -36,11 +43,15 @@ const Pricelist = (props) => {
     </Fragment>
   )
 }
-
+const mapStateToProps=state=>{
+  return{
+    loadingstate:state.FetchPricelist.loading
+  }
+}
 const mapDispatchToProps= dispatch=>{
   return {
     Onfetchpricelist:(city)=>dispatch(action.fetchPricelist(city))
   }
 }
 
-export default connect(null,mapDispatchToProps)(Pricelist);
+export default connect(mapStateToProps,mapDispatchToProps)(Pricelist);
