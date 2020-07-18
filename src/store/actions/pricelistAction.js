@@ -16,7 +16,7 @@ export const fetchPricelistSuccess=(pricelist)=>{
 export const fetchPricelist=(city)=>{
     return dispatch=>{
         dispatch(fetchPricelistStart());
-        axios.get(`https://kabaddukaan.firebaseio.com/pricelist/Delhi.json`)
+        axios.get(`https://kabaddukaan.firebaseio.com/pricelist/${city}.json`)
         .then( 
             response => {
                 const fetchedlist=[];
