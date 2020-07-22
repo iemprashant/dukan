@@ -1,28 +1,100 @@
-import React, { Fragment } from 'react'
-import { Container, Col } from 'reactstrap';
-import Footer2 from '../../footer2';
+import Footer2 from "../../footer2";
+import React, { Fragment, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as action from "../../../store/actions/index";
+import {
+  Card,
+  Button,
+  CardHeader,
+  CardFooter,
+  CardBody,
+  Row,
+  Col,
+  Container,
+} from "reactstrap";
+import { Form, FormGroup, Label, Input } from "reactstrap";
+import { Redirect } from "react-router-dom";
 
-const Signin = () => {
+const Signin = (props) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isSignup, setIsSignup] = useState(false);
+
+  const dispatch = useDispatch();
+  const onAuth = (emails, passwords, isSignups) =>
+    dispatch(action.auth(emails, passwords, isSignups));
+  const isAuthenticated = useSelector((state) => state.Auth.token !== null);
+  const submitHandler = (event) => {
+    event.preventDefault();
+    onAuth(email, password, isSignup);
+  };
+  let authRedirect = null;
+  if (isAuthenticated) {
+    authRedirect = <Redirect to="/" />;
+  }
+
   return (
     <Fragment>
-    <Container className="themed-container my-3 px-0 " fluid="sm" >
-        <Col sm="12" md={{ size: 6, offset: 3 }} className="border border-secondary py-5 px-3 d-flex bg-white flex-column justify-content-center">
-            <h4 className="text-secondary text-center font-weight-bold">Sell or Donate your scrap</h4>
-            <h6 className="text-secondary text-center font-weight-bold font-italic my-3">in just 3 easy steps</h6>
-            <div className="input-group my-3 p-3">
-              <div className="input-group-prepend">
-                <span className="input-group-text" id="inputGroup-sizing-default">+91</span>
-              </div>
-              <input type="phone-number" className="form-control" placeholder="Enter your mobile number"/>
-            </div>
-            <button type="button" className="btn btn-success">₹ SELL</button>
-            <p className="px-2  my-5 text-center">Now only in <br/>Bhopal, Indore, Raipur, Lucknow, Nagpur and Aurangabad.</p>
-
+      {authRedirect}
+      <Container className="themed-container my-3 px-0 " fluid="sm">
+        <Col
+          sm="12"
+          md={{ size: 8, offset: 2 }}
+          lg={{ size: 4, offset: 4 }}
+          className=""
+        >
+          <Card className="my-5">
+            <CardHeader className="">
+              <h4 className="text-center">Sign in to your account</h4>
+            </CardHeader>
+            <CardBody className="bg-white">
+              <Form onSubmit={submitHandler}>
+                <FormGroup>
+                  <Label for="email">Email</Label>
+                  <Input
+                    type="email"
+                    name=""
+                    id="email"
+                    placeholder="Email"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="password">Password</Label>
+                  <Row>
+                    <Col xs="8">
+                      <Input
+                        type="password"
+                        name="password"
+                        id="password"
+                        placeholder="Password"
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                    </Col>
+                    <Col xs="4">
+                      <Button outline color="primary" className="p-1">
+                        Send OTP
+                      </Button>
+                    </Col>
+                  </Row>
+                </FormGroup>
+                <FormGroup className="text-center m-2">
+                  <Button color="success">Submit</Button>
+                </FormGroup>
+              </Form>
+            </CardBody>
+            <CardFooter className="d-flex flex-row p-3">
+              <h6 className="p-2">Don't have an account?</h6>
+              <Button type="button" className="btn btn-secondary btn-sm p-1">
+                Create an Account
+              </Button>
+            </CardFooter>
+          </Card>
         </Col>
-    </Container>
-    <Footer2/>
+        <Footer2 />
+      </Container>
     </Fragment>
-  )
-}
+  );
+};
 
 export default Signin;

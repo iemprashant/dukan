@@ -21,7 +21,7 @@ const App=() =>{
       </Switch>
   )
   return (
-    <div className="bg-light">
+    <div>
         <Layout>
           {routes}
         </Layout>

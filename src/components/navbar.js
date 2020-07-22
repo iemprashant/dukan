@@ -25,16 +25,16 @@ const NavbarComp = (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto " navbar>
             <NavItem className="mx-4 my-2 ">
-              <NavLink to="/pricelist" className="text-dark text-decoration-none" exact={props.exact} style={navItemStyle}>PriceList</NavLink>
+              <NavLink to="/pricelist"onClick={toggle} className="text-dark text-decoration-none" exact={props.exact} style={navItemStyle}>PriceList</NavLink>
             </NavItem>
             <NavItem className="mx-4 my-2 ">
-              <NavLink to="/request" className="text-dark text-decoration-none" style={navItemStyle}>Request Pickup</NavLink>
+              <NavLink to="/request"onClick={toggle} className="text-dark text-decoration-none" style={navItemStyle}>Request Pickup</NavLink>
             </NavItem>
             <NavItem className="mx-4 my-2 ">
-              <NavLink to="/signin" className="text-dark text-decoration-none"style={navItemStyle}>Sign In</NavLink>
+              <NavLink to="/signin"onClick={toggle} className="text-dark text-decoration-none"style={navItemStyle}>Sign In</NavLink>
             </NavItem>
             <NavItem className="mx-4 my-2 ">
-              <NavLink to="/signup" className="text-dark text-decoration-none"style={navItemStyle}>Sign Up</NavLink>
+              <NavLink to="/signup"onClick={toggle} className="text-dark text-decoration-none"style={navItemStyle}>Sign Up</NavLink>
             </NavItem>
           </Nav>
         </Collapse>
