@@ -16,6 +16,7 @@ export const authSuccess = (idToken, userId) => {
 };
 
 export const authFail = (error) => {
+  alert(error);
   return {
     type: actionTypes.AUTH_FAIL,
     error: error,
@@ -29,16 +30,8 @@ export const authLogout = () => {
     type: actionTypes.AUTH_LOGOUT,
   };
 };
-export const checkAuthTimeout = (expirationTime) => {
+export const authlogin = (email, password) => {
   return (dispatch) => {
-    setTimeout(() => {
-      dispatch(authLogout());
-    }, expirationTime * 1000);
-  };
-};
-export const auth = (email, password, isSignup) => {
-  return (dispatch) => {
-    dispatch(authStart());
     const authData = {
       email: email,
       password: password,
@@ -46,14 +39,9 @@ export const auth = (email, password, isSignup) => {
     };
     let url =
       "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBWjsasmc2h7YXXX-U4clNtdGESiLoDY3A";
-    if (isSignup) {
-      url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBWjsasmc2h7YXXX-U4clNtdGESiLoDY3A";
-    }
     axios
       .post(url, authData)
       .then((response) => {
-        alert("done");
         const expirationDate = new Date(
           new Date().getTime() + response.data.expiresIn * 1000
         );
@@ -66,6 +54,32 @@ export const auth = (email, password, isSignup) => {
       .catch((error) => {
         dispatch(authFail(error.response.data.error));
       });
+  };
+};
+export const authsignup = (email, password) => {
+  return (dispatch) => {
+    const authData = {
+      email: email,
+      password: password,
+      returnSecureToken: true,
+    };
+    let url =
+      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBWjsasmc2h7YXXX-U4clNtdGESiLoDY3A";
+    axios
+      .post(url, authData)
+      .then((response) => {
+        dispatch(authSuccess(null, null));
+      })
+      .catch((error) => {
+        dispatch(authFail(error.response.data.error));
+      });
+  };
+};
+export const checkAuthTimeout = (expirationTime) => {
+  return (dispatch) => {
+    setTimeout(() => {
+      dispatch(authLogout());
+    }, expirationTime * 1000);
   };
 };
 
@@ -88,5 +102,11 @@ export const authCheckState = () => {
         );
       }
     }
+  };
+};
+export const auth = (email, password, isSignup) => {
+  return (dispatch) => {
+    dispatch(authStart());
+    dispatch(isSignup ? authsignup : authlogin(email, password));
   };
 };

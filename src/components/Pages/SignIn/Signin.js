@@ -2,18 +2,10 @@ import Footer2 from "../../footer2";
 import React, { Fragment, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as action from "../../../store/actions/index";
-import {
-  Card,
-  Button,
-  CardHeader,
-  CardFooter,
-  CardBody,
-  Row,
-  Col,
-  Container,
-} from "reactstrap";
+import { Card, Button, CardBody } from "reactstrap";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 import { Redirect } from "react-router-dom";
+import ContainerComp from "../../Layout/Container/Container";
 
 const Signin = (props) => {
   const [email, setEmail] = useState("");
@@ -36,63 +28,53 @@ const Signin = (props) => {
   return (
     <Fragment>
       {authRedirect}
-      <Container className="themed-container my-3 px-0 " fluid="sm">
-        <Col
-          sm="12"
-          md={{ size: 8, offset: 2 }}
-          lg={{ size: 4, offset: 4 }}
-          className=""
-        >
-          <Card className="my-5">
-            <CardHeader className="">
-              <h4 className="text-center">Sign in to your account</h4>
-            </CardHeader>
-            <CardBody className="bg-white">
-              <Form onSubmit={submitHandler}>
-                <FormGroup>
-                  <Label for="email">Email</Label>
-                  <Input
-                    type="email"
-                    name=""
-                    id="email"
-                    placeholder="Email"
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <Label for="password">Password</Label>
-                  <Row>
-                    <Col xs="8">
-                      <Input
-                        type="password"
-                        name="password"
-                        id="password"
-                        placeholder="Password"
-                        onChange={(e) => setPassword(e.target.value)}
-                      />
-                    </Col>
-                    <Col xs="4">
-                      <Button outline color="primary" className="p-1">
-                        Send OTP
-                      </Button>
-                    </Col>
-                  </Row>
-                </FormGroup>
-                <FormGroup className="text-center m-2">
-                  <Button color="success">Submit</Button>
-                </FormGroup>
-              </Form>
-            </CardBody>
-            <CardFooter className="d-flex flex-row p-3">
-              <h6 className="p-2">Don't have an account?</h6>
-              <Button type="button" className="btn btn-secondary btn-sm p-1">
-                Create an Account
-              </Button>
-            </CardFooter>
-          </Card>
-        </Col>
-        <Footer2 />
-      </Container>
+      <ContainerComp>
+        <h4 className="text-center text-center font-weight-bold">
+          Sign in to your account
+        </h4>
+        <Card className="my-2">
+          <CardBody className="bg-white">
+            <Form onSubmit={submitHandler}>
+              <FormGroup>
+                <Label for="email">
+                  <span className="font-weight-bold">Email</span>
+                </Label>
+                <Input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Email"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="password">
+                  <span className="font-weight-bold">Password</span>
+                </Label>
+                <Input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="Password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </FormGroup>
+              <FormGroup className="text-center m-2">
+                <Button color="success" size="sm">
+                  Sign In
+                </Button>
+              </FormGroup>
+            </Form>
+          </CardBody>
+        </Card>
+        <div className="d-flex flex-row p-3 ">
+          <h6 className="p-2">Don't have an account?</h6>
+          <Button type="button" className="btn btn-secondary p-1" size="sm">
+            Sign Up
+          </Button>
+        </div>
+      </ContainerComp>
+      <Footer2 />
     </Fragment>
   );
 };

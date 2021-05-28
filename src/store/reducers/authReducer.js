@@ -35,9 +35,10 @@ const authFail = (state, action) => {
 const authLogout = (state, action) => {
   return {
     ...state,
-    ...{
-      authRedirectPath: action.path,
-    },
+    token: null,
+    userId: null,
+    error: null,
+    loading: false,
   };
 };
 const reducer = (state = initialState, action) => {
